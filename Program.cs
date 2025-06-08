@@ -6,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Registro del servicio de análisis de sentimiento
+builder.Services.AddSingleton<OpinionRecommender.Services.SentimentService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

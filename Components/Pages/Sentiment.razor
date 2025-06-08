@@ -1,0 +1,138 @@
+@page "/sentiment"
+@using OpinionRecommender.Services
+@using Microsoft.JSInterop
+@inject SentimentService SentimentService
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<h3>Análisis de Sentimiento</h3>
+
+<div class="mb-3">
+    <label for="opinionInput" class="form-label">Escribe tu opinión:</label>
+    <textarea id="opinionInput" class="form-control" @bind="userOpinion" rows="3"></textarea>
+</div>
+<button class="btn btn-primary" @onclick="Analizar">Analizar</button>
+
+@if (!string.IsNullOrEmpty(SentimentService.Error))
+{
+    <div class="alert alert-danger mt-3">
+        <b>Error:</b> @SentimentService.Error
+    </div>
+}
+
+@code {
+    private string? userOpinion;
+    private List<(string Texto, MLModel.SentimentPrediction Resultado)> comentarios = new();
+
+    private async Task Analizar()
+    {
+        if (!string.IsNullOrWhiteSpace(userOpinion))
+        {
+            var resultado = SentimentService.Predict(userOpinion);
+            if (resultado != null)
+            {
+                comentarios.Add((userOpinion, resultado));
+                userOpinion = string.Empty;
+                await ActualizarGrafico();
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                window.renderSentimentChart = function(pos, neg, scores, probs) {
+                    if (window.sentimentChart && typeof window.sentimentChart.destroy === 'function') {
+                        window.sentimentChart.destroy();
+                    }
+                    var ctx = document.getElementById('sentimentChart');
+                    if (!ctx) return;
+                    ctx = ctx.getContext('2d');
+                    window.sentimentChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Positivas', 'Negativas'],
+                            datasets: [
+                                {
+                                    label: 'Cantidad',
+                                    data: [pos, neg],
+                                    backgroundColor: ['#198754', '#dc3545'],
+                                    yAxisID: 'y',
+                                },
+                                {
+                                    label: 'Score promedio',
+                                    data: [scores[0], scores[1]],
+                                    backgroundColor: ['#6c757d', '#6c757d'],
+                                    type: 'line',
+                                    yAxisID: 'y1',
+                                },
+                                {
+                                    label: 'Probabilidad promedio',
+                                    data: [probs[0], probs[1]],
+                                    backgroundColor: ['#ffc107', '#ffc107'],
+                                    type: 'line',
+                                    yAxisID: 'y2',
+                                }
+                            ]
+                        },
+                        options: {
+                            plugins: { legend: { display: true } },
+                            scales: {
+                                y: { beginAtZero: true, position: 'left', title: { display: true, text: 'Cantidad' } },
+                                y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Score' } },
+                                y2: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Probabilidad' }, min: 0, max: 1 }
+                            }
+                        }
+                    });
+                };
+            ");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+        if (comentarios.Count > 0)
+            await ActualizarGrafico();
+    }
+
+    private async Task ActualizarGrafico()
+    {
+        if (comentarios.Count == 0) return;
+        int pos = comentarios.Count(x => x.Resultado.Prediction); // Prediction true = positivo
+        int neg = comentarios.Count(x => !x.Resultado.Prediction); // Prediction false = negativo
+        float avgScorePos = comentarios.Where(x => x.Resultado.Prediction).Select(x => x.Resultado.Score).DefaultIfEmpty(0).Average();
+        float avgScoreNeg = comentarios.Where(x => !x.Resultado.Prediction).Select(x => x.Resultado.Score).DefaultIfEmpty(0).Average();
+        float avgProbPos = comentarios.Where(x => x.Resultado.Prediction).Select(x => x.Resultado.Probability).DefaultIfEmpty(0).Average();
+        float avgProbNeg = comentarios.Where(x => !x.Resultado.Prediction).Select(x => x.Resultado.Probability).DefaultIfEmpty(0).Average();
+        await JS.InvokeVoidAsync("renderSentimentChart", pos, neg, new[] { avgScorePos, avgScoreNeg }, new[] { avgProbPos, avgProbNeg });
+    }
+}
+
+@if (comentarios.Count > 0)
+{
+    <h5 class="mt-4">Opiniones Analizadas:</h5>
+    @foreach (var item in comentarios)
+    {
+        <div class="card mb-2 p-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>@item.Texto</div>
+                <span class="badge @(item.Resultado.Prediction ? "bg-success" : "bg-danger")">
+                    @(item.Resultado.Prediction ? "Positivo" : "Negativo")
+                </span>
+            </div>
+            <div class="text-muted small">
+                Score: @item.Resultado.Score.ToString("F3") | Probabilidad: @item.Resultado.Probability.ToString("P2")
+            </div>
+        </div>
+    }
+    <h5 class="mt-4">Resumen gráfico de opiniones</h5>
+    <canvas id="sentimentChart" width="400" height="180"></canvas>
+    <div class="row mt-2">
+        <div class="col">
+            <span class="badge bg-success">Positivas: @comentarios.Count(x => x.Resultado.Prediction)</span>
+        </div>
+        <div class="col">
+            <span class="badge bg-danger">Negativas: @comentarios.Count(x => !x.Resultado.Prediction)</span>
+        </div>
+    </div>
+}
