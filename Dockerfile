@@ -6,10 +6,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["OpinionRecommender/OpinionRecommender.csproj", "OpinionRecommender/"]
-RUN dotnet restore "OpinionRecommender/OpinionRecommender.csproj"
+COPY OpinionRecommender.csproj .
+RUN dotnet restore "OpinionRecommender.csproj"
 COPY . .
-WORKDIR "/src/OpinionRecommender"
 RUN dotnet publish "OpinionRecommender.csproj" -c Release -o /app/publish
 
 FROM base AS final
