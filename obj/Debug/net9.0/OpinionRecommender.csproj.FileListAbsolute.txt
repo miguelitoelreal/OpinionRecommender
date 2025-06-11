@@ -15,6 +15,7 @@ C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Microsof
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Transforms.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.CpuMath.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.DataView.dll
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Recommender.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\System.CodeDom.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\System.Numerics.Tensors.dll
@@ -31,6 +32,19 @@ C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-arm64\native\LdaNative.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x64\native\LdaNative.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x86\native\LdaNative.dll
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libMatrixFactorizationNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libMatrixFactorizationNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libMatrixFactorizationNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libMatrixFactorizationNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-arm64\native\MatrixFactorizationNative.dll
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x64\native\MatrixFactorizationNative.dll
+C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x86\native\MatrixFactorizationNative.dll
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.csproj.AssemblyReference.cache
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.AssemblyInfoInputs.cache
@@ -104,3 +118,123 @@ C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\refint\O
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.pdb
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.genruntimeconfig.cache
 C:\Users\Tottus Electro\Desktop\pc4\OpinionRecommender\obj\Debug\net9.0\ref\OpinionRecommender.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\appsettings.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.staticwebassets.endpoints.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.staticwebassets.runtime.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.exe
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.deps.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.runtimeconfig.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\OpinionRecommender.pdb
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Core.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Data.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.KMeansClustering.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.PCA.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.StandardTrainers.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Transforms.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.CpuMath.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.DataView.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Microsoft.ML.Recommender.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\System.CodeDom.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\System.Numerics.Tensors.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libLdaNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libLdaNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libLdaNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libLdaNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libLdaNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libLdaNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libLdaNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libLdaNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libLdaNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libLdaNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-arm64\native\LdaNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x64\native\LdaNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x86\native\LdaNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-arm64\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libMatrixFactorizationNative.so
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\linux-x64\native\libMatrixFactorizationNative.so.dbg
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libMatrixFactorizationNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-arm64\native\libMatrixFactorizationNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libMatrixFactorizationNative.dylib
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\osx-x64\native\libMatrixFactorizationNative.dylib.dwarf
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-arm64\native\MatrixFactorizationNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x64\native\MatrixFactorizationNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\bin\Debug\net9.0\runtimes\win-x86\native\MatrixFactorizationNative.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.csproj.AssemblyReference.cache
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.AssemblyInfoInputs.cache
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.AssemblyInfo.cs
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.csproj.CoreCompileInputs.cache
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.sourcelink.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\scopedcss\bundle\OpinionRecommender.styles.css
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\scopedcss\projectbundle\OpinionRecommender.bundle.scp.css
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\5ln4f6x3o3-khy4lop6wu.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\aivpw27j8m-bqjiyaj88i.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\cwwyt1nr0c-c2jlpeoesf.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\khkjgwnbdi-erw9l3u2r3.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\khdf9wxyo7-aexeepp0ev.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\ftyu5r4lra-d7shbmvgxk.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\dr2ycbzbve-ausgxo2sd3.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\h4k0gpt4kh-k8d9w2qqmf.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\gyz0hgeent-cosvhxvwiu.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\jyvnviz5sm-ub07r2b239.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\bi07e613is-fvhpjtyr6v.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\kvni1z154t-b7pk76d08c.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\sydmlwg5cp-fsbi9cje9m.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\5nwc758jeq-rzd6atqjts.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\ymv0dj69ex-ee0r1s7dh0.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\4cnyd30mo8-dxx9fxp4il.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\psgypp9zjd-jd9uben2k1.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\xrmv9p9l5j-khv3u5hwcm.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\cr4om40p96-r4e9w2rdcm.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\0981hi1n4v-lcd1t2u6c8.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\84szg2w2fp-c2oey78nd0.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\aqbppv39gv-tdbxkamptv.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\h46j6sxgwg-j5mq2jizvt.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\1lmy4iqs4w-06098lyss8.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\2je4bdsp92-nvvlpmu67g.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\rjzq8aok6p-s35ty4nyc5.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\dgpodk891n-pj5nd1wqec.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\iviuloesir-46ein0sx1k.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\ym0wdbag4p-v0zj4ognzu.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\lm877p125o-37tfw0ft22.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\kf7kkt725b-hrwsygsryq.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\zovd9wyr1v-pk9g2wxc8p.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\3daf06q9os-ft3s53vfgj.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\ya1pfvf1cv-6cfz1n2cew.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\c05v56xfzu-6pdc2jztkx.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\s5qkcdfegs-493y06b0oq.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\03of9twjnh-iovd86k7lj.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\ijwqsbx554-vr1egmr9el.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\h5m8lshrqx-kbrnm935zg.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\utbawgh6iw-jj8uyg4cgr.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\r74a4sxt95-y7v9cxd14o.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\64w0se8f6g-notf2xhcfb.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\brmg2a2rdi-h1s4sie4z3.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\kmrjxfjjjv-63fj8s7r0e.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\k7fpp2mifx-0j3bgjxly4.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\olwg693zp5-aln38wlwkw.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\compressed\7zv5j1adwp-aln38wlwkw.gz
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets\msbuild.OpinionRecommender.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets\msbuild.OpinionRecommender.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets\msbuild.build.OpinionRecommender.props
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.OpinionRecommender.props
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.OpinionRecommender.props
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\staticwebassets.pack.json
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionR.ACA26BB1.Up2Date
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\refint\OpinionRecommender.dll
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.pdb
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\OpinionRecommender.genruntimeconfig.cache
+C:\Users\Tottus Electro\Desktop\pc4 - copia\OpinionRecommender\obj\Debug\net9.0\ref\OpinionRecommender.dll
