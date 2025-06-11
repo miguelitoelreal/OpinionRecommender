@@ -24,15 +24,8 @@ namespace OpinionRecommender.Services
 
         private void LoadDataAndTrain()
         {
-            // Entrenar modelo desde datos ficticios en memoria
-            var tempCsv = Path.Combine(Path.GetTempPath(), $"ratings-data-{Guid.NewGuid()}.csv");
-            using (var writer = new StreamWriter(tempCsv))
-            {
-                writer.WriteLine("UserId,ProductId,Label");
-                foreach (var inter in DatosFicticios.Interacciones)
-                    writer.WriteLine($"{inter.UserId},{inter.ProductId},{inter.Label}");
-            }
-            _dataView = _mlContext.Data.LoadFromTextFile<ProductRating>(tempCsv, hasHeader: true, separatorChar: ',');
+            // Entrenar modelo desde datos ficticios en memoria (sin archivos temporales)
+            _dataView = _mlContext.Data.LoadFromEnumerable(DatosFicticios.Interacciones);
             var dataProcessPipeline = _mlContext.Transforms.Conversion.MapValueToKey("UserId")
                 .Append(_mlContext.Transforms.Conversion.MapValueToKey("ProductId"));
             var options = new MatrixFactorizationTrainer.Options
