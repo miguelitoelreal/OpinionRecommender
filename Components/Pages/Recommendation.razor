@@ -1,6 +1,6 @@
 @page "/recommendation"
-@using OpinionRecommender.Services
-@inject OpinionRecommender.Services.RecommendationService RecommendationService
+@using System.Net.Http.Json
+@inject IHttpClientFactory ClientFactory
 
 <h3>Recomendador de Productos</h3>
 
@@ -8,9 +8,17 @@
     <label for="userIdInput" class="form-label">UserId (ej: U1, U2, U3, U4, U5)</label>
     <input id="userIdInput" class="form-control" @bind="userId" />
 </div>
-<button class="btn btn-primary" @onclick="Recomendar">Recomendar</button>
+<button class="btn btn-primary" @onclick="Recomendar" [disabled]="cargando">Recomendar</button>
 
-@if (recomendaciones != null && !string.IsNullOrWhiteSpace(userId))
+@if (cargando)
+{
+    <div class="alert alert-info mt-3">Buscando recomendaciones...</div>
+}
+@if (!string.IsNullOrEmpty(error))
+{
+    <div class="alert alert-danger mt-3">@error</div>
+}
+@if (recomendaciones != null && !string.IsNullOrWhiteSpace(userId) && !cargando && string.IsNullOrEmpty(error))
 {
     <h4>Recomendaciones visuales:</h4>
     @if (recomendaciones.Count == 0)
@@ -22,12 +30,11 @@
         <div class="row">
             @foreach (var rec in recomendaciones.OrderByDescending(x => x.Score))
             {
-                var prod = productos.FirstOrDefault(p => p.ProductId == rec.ProductId);
                 <div class="col-md-4 mb-3">
                     <div class="card h-100 shadow-sm">
-                        <img src="@prod.Imagen" class="card-img-top" alt="@prod.Nombre" style="max-height:200px; min-height:180px; object-fit:cover; width:100%; border-bottom:1px solid #eee;" />
+                        <img src="@rec.Producto.Imagen" class="card-img-top" alt="@rec.Producto.Nombre" style="max-height:200px; min-height:180px; object-fit:cover; width:100%; border-bottom:1px solid #eee;" />
                         <div class="card-body">
-                            <h5 class="card-title">@prod.Nombre</h5>
+                            <h5 class="card-title">@rec.Producto.Nombre</h5>
                             <p class="card-text">Score de recomendación: <b>@rec.Score.ToString("F2")</b></p>
                         </div>
                     </div>
@@ -39,19 +46,48 @@
 
 @code {
     private string? userId;
-    private List<(string ProductId, float Score)>? recomendaciones = new();
-    private List<(string ProductId, string Nombre, string Imagen)> productos = OpinionRecommender.MLModel.DatosFicticios.Productos;
+    private List<RecomendacionDto>? recomendaciones = new();
+    private bool cargando = false;
+    private string? error;
+
+    public class RecomendacionDto
+    {
+        public string ProductId { get; set; } = string.Empty;
+        public float Score { get; set; }
+        public ProductoDto Producto { get; set; } = new();
+    }
+    public class ProductoDto
+    {
+        public string ProductId { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public string Imagen { get; set; } = string.Empty;
+    }
 
     private async Task Recomendar()
     {
+        error = null;
+        recomendaciones = new();
         if (string.IsNullOrWhiteSpace(userId))
         {
-            recomendaciones = new List<(string, float)>();
-            await InvokeAsync(StateHasChanged);
+            error = "Debe ingresar un UserId";
             return;
         }
-        var userIdUpper = userId.ToUpperInvariant();
-        recomendaciones = RecommendationService.Recommend(userIdUpper, 5);
-        await InvokeAsync(StateHasChanged);
+        cargando = true;
+        try
+        {
+            var client = ClientFactory.CreateClient();
+            var url = $"/api/recommendation?userId={userId.ToUpperInvariant()}";
+            var result = await client.GetFromJsonAsync<List<RecomendacionDto>>(url);
+            recomendaciones = result ?? new();
+        }
+        catch (Exception ex)
+        {
+            error = "No se pudo obtener recomendaciones: " + ex.Message;
+        }
+        finally
+        {
+            cargando = false;
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }
