@@ -1,6 +1,6 @@
 @page "/recommendation"
 @using System.Net.Http.Json
-@inject IHttpClientFactory ClientFactory
+@inject HttpClient Http
 
 <h3>Recomendador de Productos</h3>
 
@@ -75,9 +75,8 @@
         cargando = true;
         try
         {
-            var client = ClientFactory.CreateClient();
             var url = $"/api/recommendation?userId={userId.ToUpperInvariant()}";
-            var result = await client.GetFromJsonAsync<List<RecomendacionDto>>(url);
+            var result = await Http.GetFromJsonAsync<List<RecomendacionDto>>(url);
             recomendaciones = result ?? new();
         }
         catch (Exception ex)
