@@ -8,6 +8,10 @@ builder.Services.AddRazorComponents()
 
 // Registro del servicio de análisis de sentimiento
 builder.Services.AddSingleton<OpinionRecommender.Services.SentimentService>();
+// Registro del servicio de recomendación
+builder.Services.AddSingleton<OpinionRecommender.Services.RecommendationService>();
+builder.Services.AddHttpClient();
+builder.Services.AddControllers(); // Habilitar controladores y endpoints API convencionales
 
 var app = builder.Build();
 
@@ -27,5 +31,6 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+app.MapControllers(); // Habilitar controladores y endpoints API convencionales
 
 app.Run();

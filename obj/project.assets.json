@@ -183,6 +183,79 @@
           }
         }
       },
+      "Microsoft.ML.Recommender/0.22.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ML": "4.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.ML.Recommender.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.ML.Recommender.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/netstandard2.0/Microsoft.ML.Recommender.props": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libMatrixFactorizationNative.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm/native/libMatrixFactorizationNative.so.dbg": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libMatrixFactorizationNative.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-arm64/native/libMatrixFactorizationNative.so.dbg": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libMatrixFactorizationNative.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libMatrixFactorizationNative.so.dbg": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libMatrixFactorizationNative.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-arm64/native/libMatrixFactorizationNative.dylib.dwarf": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib.dwarf": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm64/native/MatrixFactorizationNative.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/MatrixFactorizationNative.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/MatrixFactorizationNative.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -370,6 +443,37 @@
         "microsoft.ml.dataview.4.0.2.nupkg.sha512",
         "microsoft.ml.dataview.nuspec",
         "mlnetlogo.png"
+      ]
+    },
+    "Microsoft.ML.Recommender/0.22.2": {
+      "sha512": "QebezSwGrKMo3YCHNGnI064qlgPKfvKu8cuNGlM+E+2OWzP7Jys2z9gdB5MiDVU0sqNPfUBovx7WTlkD6V9MBQ==",
+      "type": "package",
+      "path": "microsoft.ml.recommender/0.22.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "COPYRIGHT",
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.TXT",
+        "build/netstandard2.0/Microsoft.ML.Recommender.props",
+        "lib/netstandard2.0/Microsoft.ML.Recommender.dll",
+        "lib/netstandard2.0/Microsoft.ML.Recommender.xml",
+        "microsoft.ml.recommender.0.22.2.nupkg.sha512",
+        "microsoft.ml.recommender.nuspec",
+        "mlnetlogo.png",
+        "runtimes/linux-arm/native/libMatrixFactorizationNative.so",
+        "runtimes/linux-arm/native/libMatrixFactorizationNative.so.dbg",
+        "runtimes/linux-arm64/native/libMatrixFactorizationNative.so",
+        "runtimes/linux-arm64/native/libMatrixFactorizationNative.so.dbg",
+        "runtimes/linux-x64/native/libMatrixFactorizationNative.so",
+        "runtimes/linux-x64/native/libMatrixFactorizationNative.so.dbg",
+        "runtimes/osx-arm64/native/libMatrixFactorizationNative.dylib",
+        "runtimes/osx-arm64/native/libMatrixFactorizationNative.dylib.dwarf",
+        "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib",
+        "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib.dwarf",
+        "runtimes/win-arm64/native/MatrixFactorizationNative.dll",
+        "runtimes/win-x64/native/MatrixFactorizationNative.dll",
+        "runtimes/win-x86/native/MatrixFactorizationNative.dll"
       ]
     },
     "Newtonsoft.Json/13.0.3": {
@@ -604,7 +708,8 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Microsoft.ML >= 4.0.2"
+      "Microsoft.ML >= 4.0.2",
+      "Microsoft.ML.Recommender >= 0.22.2"
     ]
   },
   "packageFolders": {
@@ -613,11 +718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tottus Electro\\Desktop\\pc4\\OpinionRecommender\\OpinionRecommender.csproj",
+      "projectUniqueName": "C:\\Users\\Tottus Electro\\Desktop\\pc4 - copia\\OpinionRecommender\\OpinionRecommender.csproj",
       "projectName": "OpinionRecommender",
-      "projectPath": "C:\\Users\\Tottus Electro\\Desktop\\pc4\\OpinionRecommender\\OpinionRecommender.csproj",
+      "projectPath": "C:\\Users\\Tottus Electro\\Desktop\\pc4 - copia\\OpinionRecommender\\OpinionRecommender.csproj",
       "packagesPath": "C:\\Users\\Tottus Electro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tottus Electro\\Desktop\\pc4\\OpinionRecommender\\obj\\",
+      "outputPath": "C:\\Users\\Tottus Electro\\Desktop\\pc4 - copia\\OpinionRecommender\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tottus Electro\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -653,6 +758,10 @@
           "Microsoft.ML": {
             "target": "Package",
             "version": "[4.0.2, )"
+          },
+          "Microsoft.ML.Recommender": {
+            "target": "Package",
+            "version": "[0.22.2, )"
           }
         },
         "imports": [
