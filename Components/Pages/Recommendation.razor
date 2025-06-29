@@ -1,52 +1,71 @@
 @page "/recommendation"
 @using System.Net.Http.Json
 @inject HttpClient Http
+@* Link to the specific CSS file *@
+<link href="Components/Pages/Recommendation.razor.css" rel="stylesheet" />
 
-<h3>Recomendador de Productos</h3>
+<div class="recommendation-container">
+    <h3 class="mb-4">Product Recommender</h3>
 
-<div class="mb-3">
-    <label for="userIdInput" class="form-label">UserId (ej: U1, U2, U3, U4, U5)</label>
-    <input id="userIdInput" class="form-control" @bind="userId" />
-</div>
-<button class="btn btn-primary" @onclick="Recomendar" [disabled]="cargando">Recomendar</button>
+    <div class="input-group-futuristic">
+        <label for="userIdInput">User ID (e.g., U1, U2):</label>
+        <input id="userIdInput" class="form-control" @bind="userId" placeholder="Enter User ID" />
+        <button class="btn btn-primary" @onclick="Recomendar" disabled="@cargando">
+            @if (cargando) {
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span> Searching...</span>
+            } else {
+                <span>Recommend</span>
+            }
+        </button>
+    </div>
 
-@if (cargando)
-{
-    <div class="alert alert-info mt-3">Buscando recomendaciones...</div>
-}
-@if (!string.IsNullOrEmpty(error))
-{
-    <div class="alert alert-danger mt-3">@error</div>
-}
-@if (recomendaciones != null && !string.IsNullOrWhiteSpace(userId) && !cargando && string.IsNullOrEmpty(error))
-{
-    <h4>Recomendaciones visuales:</h4>
-    @if (recomendaciones.Count == 0)
+    @if (cargando && (recomendaciones == null || recomendaciones.Count == 0) && string.IsNullOrEmpty(error))
     {
-        <div class="alert alert-warning">No se encontraron recomendaciones para el usuario ingresado. Prueba con U1, U2, U3, U4 o U5.</div>
+        <div class="alert alert-info loading-message mt-3">Searching for recommendations...</div>
     }
-    else
+    @if (!string.IsNullOrEmpty(error))
     {
-        <div class="row">
-            @foreach (var rec in recomendaciones.OrderByDescending(x => x.Score))
+        <div class="alert alert-danger error-message mt-3">@error</div>
+    }
+
+    @if (recomendaciones != null && !cargando && string.IsNullOrEmpty(error))
+    {
+        @if (recomendaciones.Count == 0)
+        {
+            @if (!string.IsNullOrWhiteSpace(userId)) // Only show warning if a user ID was actually entered
             {
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100 shadow-sm">
-                        <img src="@rec.Producto.Imagen" class="card-img-top" alt="@rec.Producto.Nombre" style="max-height:200px; min-height:180px; object-fit:cover; width:100%; border-bottom:1px solid #eee;" />
-                        <div class="card-body">
-                            <h5 class="card-title">@rec.Producto.Nombre</h5>
-                            <p class="card-text">Score de recomendación: <b>@rec.Score.ToString("F2")</b></p>
+                <div class="alert alert-warning warning-message mt-3">No recommendations found for this user. Try U1, U2, U3, U4, or U5.</div>
+            }
+        }
+        else
+        {
+            <h4 class="mt-5 mb-3">Visual Recommendations:</h4>
+            <div class="recommendation-grid">
+                @foreach (var rec in recomendaciones.OrderByDescending(x => x.Score))
+                {
+                    <div class="product-card">
+                        <div class="product-card-img-container">
+                            <img src="@rec.Producto.Imagen" class="product-card-img" alt="@rec.Producto.Nombre" />
+                            <div class="product-card-img-overlay"></div>
+                        </div>
+                        <div class="product-card-body">
+                            <h5 class="product-card-title">@rec.Producto.Nombre</h5>
+                            @* <p class="product-card-text">Some placeholder description or details about the product could go here.</p> *@
+                            <div class="product-card-score">
+                                <span class="score-label">Score: </span><span class="score-value">@rec.Score.ToString("F2")</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
     }
-}
+</div>
 
 @code {
     private string? userId;
-    private List<RecomendacionDto>? recomendaciones = new();
+    private List<RecomendacionDto>? recomendaciones; // Initialize as null to better handle initial state
     private bool cargando = false;
     private string? error;
 
@@ -56,6 +75,7 @@
         public float Score { get; set; }
         public ProductoDto Producto { get; set; } = new();
     }
+
     public class ProductoDto
     {
         public string ProductId { get; set; } = string.Empty;
@@ -66,27 +86,34 @@
     private async Task Recomendar()
     {
         error = null;
-        recomendaciones = new();
+        // recomendaciones = new(); // Clear previous recommendations immediately for better UX
+        cargando = true;
+        StateHasChanged(); // Update UI to show loading state
+
         if (string.IsNullOrWhiteSpace(userId))
         {
-            error = "Debe ingresar un UserId";
+            error = "User ID must be entered.";
+            cargando = false;
+            recomendaciones = null; // Clear recommendations if input is invalid
+            StateHasChanged();
             return;
         }
-        cargando = true;
+
         try
         {
             var url = $"/api/recommendation?userId={userId.ToUpperInvariant()}";
             var result = await Http.GetFromJsonAsync<List<RecomendacionDto>>(url);
-            recomendaciones = result ?? new();
+            recomendaciones = result ?? new List<RecomendacionDto>();
         }
         catch (Exception ex)
         {
-            error = "No se pudo obtener recomendaciones: " + ex.Message;
+            error = "Could not retrieve recommendations: " + ex.Message;
+            recomendaciones = null; // Clear on error
         }
         finally
         {
             cargando = false;
-            await InvokeAsync(StateHasChanged);
+            StateHasChanged(); // Update UI with results or error
         }
     }
 }

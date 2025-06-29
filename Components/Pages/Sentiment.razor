@@ -4,135 +4,247 @@
 @inject SentimentService SentimentService
 @inject IJSRuntime JS
 @rendermode InteractiveServer
+<link href="Components/Pages/Sentiment.razor.css" rel="stylesheet" />
 
-<h3>Análisis de Sentimiento</h3>
+<div class="sentiment-container">
+    <h3 class="mb-4">Sentiment Analyzer</h3>
 
-<div class="mb-3">
-    <label for="opinionInput" class="form-label">Escribe tu opinión:</label>
-    <textarea id="opinionInput" class="form-control" @bind="userOpinion" rows="3"></textarea>
-</div>
-<button class="btn btn-primary" @onclick="Analizar">Analizar</button>
-
-@if (!string.IsNullOrEmpty(SentimentService.Error))
-{
-    <div class="alert alert-danger mt-3">
-        <b>Error:</b> @SentimentService.Error
+    <div class="sentiment-input-area">
+        <label for="opinionInput" class="form-label">Enter your opinion:</label>
+        <textarea id="opinionInput" class="form-control" @bind="userOpinion" rows="4" placeholder="Type or paste text here..."></textarea>
+        <button class="btn btn-primary" @onclick="Analizar" disabled="@analyzing">
+            @if (analyzing)
+            {
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span> Analyzing...</span>
+            }
+            else
+            {
+                <span>Analyze Sentiment</span>
+            }
+        </button>
     </div>
-}
+
+    @if (!string.IsNullOrEmpty(SentimentService.Error))
+    {
+        <div class="alert alert-danger error-message-sentiment mt-3">
+            <strong>Error:</strong> @SentimentService.Error
+        </div>
+    }
+
+    @if (comentarios.Count > 0)
+    {
+        <h4 class="mt-5 mb-3">Analyzed Opinions:</h4>
+        <div class="list-group analyzed-comments-list">
+            @foreach (var item in comentarios.AsEnumerable().Reverse()) @* Show newest first *@
+            {
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between mb-1">
+                        <p class="mb-1 comment-text">@item.Texto</p>
+                        <span class="badge @(item.Resultado.Prediction ? "bg-success" : "bg-danger")">
+                            @(item.Resultado.Prediction ? "Positive" : "Negative")
+                        </span>
+                    </div>
+                    <small class="comment-details">
+                        Score: @item.Resultado.Score.ToString("F3") | Probability: @item.Resultado.Probability.ToString("P2")
+                    </small>
+                </div>
+            }
+        </div>
+
+        <div class="sentiment-chart-container mt-4">
+            <h5 class="mb-3">Opinions Summary</h5>
+            <canvas id="sentimentChart"></canvas> @* Removed fixed width/height for responsiveness *@
+        </div>
+
+        <div class="summary-badges-container mt-3">
+            <span class="badge bg-success">Positive: @comentarios.Count(x => x.Resultado.Prediction)</span>
+            <span class="badge bg-danger">Negative: @comentarios.Count(x => !x.Resultado.Prediction)</span>
+        </div>
+    }
+</div>
 
 @code {
     private string? userOpinion;
     private List<(string Texto, MLModel.SentimentPrediction Resultado)> comentarios = new();
+    private bool analyzing = false;
+
+    // Store CSS variables for JS
+    private string accentColor = "#00e5ff"; // Default, will be updated from CSS
+    private string successColor = "#00C851";
+    private string dangerColor = "#ff4444";
+    private string secondaryTextColor = "#a0a0c0";
+    private string cardBackgroundColor = "#1a1a3a";
+     private string fontfamilyBase = "Rajdhani, sans-serif";
+
 
     private async Task Analizar()
     {
-        if (!string.IsNullOrWhiteSpace(userOpinion))
+        if (string.IsNullOrWhiteSpace(userOpinion)) return;
+
+        analyzing = true;
+        StateHasChanged();
+
+        var resultado = SentimentService.Predict(userOpinion);
+        if (resultado != null)
         {
-            var resultado = SentimentService.Predict(userOpinion);
-            if (resultado != null)
-            {
-                comentarios.Add((userOpinion, resultado));
-                userOpinion = string.Empty;
-                await ActualizarGrafico();
-                await InvokeAsync(StateHasChanged);
-            }
+            comentarios.Add((userOpinion, resultado));
+            userOpinion = string.Empty; // Clear input after analysis
+            await ActualizarGrafico();
         }
+        analyzing = false;
+        StateHasChanged();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
+            // Get CSS variable values using JS interop
+            accentColor = await JS.InvokeAsync<string>("getCssVariable", "--accent-color");
+            successColor = await JS.InvokeAsync<string>("getCssVariable", "--success-color");
+            dangerColor = await JS.InvokeAsync<string>("getCssVariable", "--danger-color");
+            secondaryTextColor = await JS.InvokeAsync<string>("getCssVariable", "--secondary-text-color");
+            cardBackgroundColor = await JS.InvokeAsync<string>("getCssVariable", "--card-background-color");
+            fontfamilyBase = await JS.InvokeAsync<string>("getCssVariable", "--font-family-base");
+
+
             await JS.InvokeVoidAsync("eval", @"
-                window.renderSentimentChart = function(pos, neg, scores, probs) {
+                window.getCssVariable = function(variableName) {
+                    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+                };
+
+                window.renderSentimentChart = function(pos, neg, scores, probs, accentCol, successCol, dangerCol, secondaryTextCol, cardBgCol, fontFamily) {
                     if (window.sentimentChart && typeof window.sentimentChart.destroy === 'function') {
                         window.sentimentChart.destroy();
                     }
                     var ctx = document.getElementById('sentimentChart');
                     if (!ctx) return;
                     ctx = ctx.getContext('2d');
+
+                    Chart.defaults.font.family = fontFamily;
+                    Chart.defaults.color = secondaryTextCol; // Default text color for chart
+
                     window.sentimentChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ['Positivas', 'Negativas'],
+                            labels: ['Positive', 'Negative'],
                             datasets: [
                                 {
-                                    label: 'Cantidad',
+                                    label: 'Count',
                                     data: [pos, neg],
-                                    backgroundColor: ['#198754', '#dc3545'],
+                                    backgroundColor: [successCol, dangerCol],
+                                    borderColor: [successCol, dangerCol],
+                                    borderWidth: 1,
                                     yAxisID: 'y',
                                 },
-                                {
-                                    label: 'Score promedio',
-                                    data: [scores[0], scores[1]],
-                                    backgroundColor: ['#6c757d', '#6c757d'],
-                                    type: 'line',
-                                    yAxisID: 'y1',
-                                },
-                                {
-                                    label: 'Probabilidad promedio',
-                                    data: [probs[0], probs[1]],
-                                    backgroundColor: ['#ffc107', '#ffc107'],
-                                    type: 'line',
-                                    yAxisID: 'y2',
-                                }
+                                // {
+                                //     label: 'Average Score',
+                                //     data: [scores[0], scores[1]],
+                                //     borderColor: accentCol,
+                                //     backgroundColor: accentCol + '80', // Accent with alpha
+                                //     type: 'line',
+                                //     yAxisID: 'y1',
+                                //     tension: 0.3
+                                // },
+                                // {
+                                //     label: 'Average Probability',
+                                //     data: [probs[0], probs[1]],
+                                //     borderColor: secondaryTextCol,
+                                //     backgroundColor: secondaryTextCol + '80', // secondaryText with alpha
+                                //     type: 'line',
+                                //     yAxisID: 'y2',
+                                //     tension: 0.3
+                                // }
                             ]
                         },
                         options: {
-                            plugins: { legend: { display: true } },
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    labels: { color: secondaryTextCol, font: { family: fontFamily } }
+                                },
+                                tooltip: {
+                                    backgroundColor: cardBgCol,
+                                    titleColor: accentCol,
+                                    bodyColor: secondaryTextCol,
+                                    borderColor: accentCol,
+                                    borderWidth: 1
+                                }
+                            },
                             scales: {
-                                y: { beginAtZero: true, position: 'left', title: { display: true, text: 'Cantidad' } },
-                                y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Score' } },
-                                y2: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Probabilidad' }, min: 0, max: 1 }
+                                y: {
+                                    beginAtZero: true,
+                                    position: 'left',
+                                    title: { display: true, text: 'Count', color: secondaryTextCol, font: { family: fontFamily } },
+                                    grid: { color: secondaryTextCol + '33' }, // Lighter grid lines
+                                    ticks: { color: secondaryTextCol, font: { family: fontFamily }, stepSize: 1 }
+                                },
+                                // y1: {
+                                //     beginAtZero: true,
+                                //     position: 'right',
+                                //     grid: { drawOnChartArea: false },
+                                //     title: { display: true, text: 'Avg Score', color: secondaryTextCol, font: { family: fontFamily } },
+                                //     ticks: { color: secondaryTextCol, font: { family: fontFamily } }
+                                // },
+                                // y2: {
+                                //     beginAtZero: true,
+                                //     position: 'right',
+                                //     grid: { drawOnChartArea: false },
+                                //     title: { display: true, text: 'Avg Probability', color: secondaryTextCol, font: { family: fontFamily } },
+                                //     min: 0, max: 1,
+                                //     ticks: { color: secondaryTextCol, font: { family: fontFamily } }
+                                // }
+                                x: {
+                                     grid: { display: false },
+                                     ticks: { color: secondaryTextCol, font: { family: fontFamily } }
+                                }
                             }
                         }
                     });
                 };
             ");
         }
-        await base.OnAfterRenderAsync(firstRender);
+        // Update chart if there are existing comments on subsequent renders (e.g., after navigation)
         if (comentarios.Count > 0)
+        {
             await ActualizarGrafico();
+        }
     }
 
     private async Task ActualizarGrafico()
     {
-        if (comentarios.Count == 0) return;
-        int pos = comentarios.Count(x => x.Resultado.Prediction); // Prediction true = positivo
-        int neg = comentarios.Count(x => !x.Resultado.Prediction); // Prediction false = negativo
+        if (comentarios.Count == 0 && !firstRenderCalled) return; // Don't render empty chart unless it's the first time
+
+        int pos = comentarios.Count(x => x.Resultado.Prediction);
+        int neg = comentarios.Count(x => !x.Resultado.Prediction);
         float avgScorePos = comentarios.Where(x => x.Resultado.Prediction).Select(x => x.Resultado.Score).DefaultIfEmpty(0).Average();
         float avgScoreNeg = comentarios.Where(x => !x.Resultado.Prediction).Select(x => x.Resultado.Score).DefaultIfEmpty(0).Average();
         float avgProbPos = comentarios.Where(x => x.Resultado.Prediction).Select(x => x.Resultado.Probability).DefaultIfEmpty(0).Average();
         float avgProbNeg = comentarios.Where(x => !x.Resultado.Prediction).Select(x => x.Resultado.Probability).DefaultIfEmpty(0).Average();
-        await JS.InvokeVoidAsync("renderSentimentChart", pos, neg, new[] { avgScorePos, avgScoreNeg }, new[] { avgProbPos, avgProbNeg });
-    }
-}
 
-@if (comentarios.Count > 0)
-{
-    <h5 class="mt-4">Opiniones Analizadas:</h5>
-    @foreach (var item in comentarios)
-    {
-        <div class="card mb-2 p-2">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>@item.Texto</div>
-                <span class="badge @(item.Resultado.Prediction ? "bg-success" : "bg-danger")">
-                    @(item.Resultado.Prediction ? "Positivo" : "Negativo")
-                </span>
-            </div>
-            <div class="text-muted small">
-                Score: @item.Resultado.Score.ToString("F3") | Probabilidad: @item.Resultado.Probability.ToString("P2")
-            </div>
-        </div>
+        // Ensure JS interop calls are made after the first render has completed.
+        // If OnAfterRenderAsync is called multiple times, firstRender will be false for subsequent calls.
+        if (firstRenderCalled || !firstRender) {
+             await JS.InvokeVoidAsync("renderSentimentChart",
+                pos, neg,
+                new[] { avgScorePos, avgScoreNeg },
+                new[] { avgProbPos, avgProbNeg },
+                accentColor, successColor, dangerColor, secondaryTextColor, cardBackgroundColor, fontfamilyBase
+            );
+        }
     }
-    <h5 class="mt-4">Resumen gráfico de opiniones</h5>
-    <canvas id="sentimentChart" width="400" height="180"></canvas>
-    <div class="row mt-2">
-        <div class="col">
-            <span class="badge bg-success">Positivas: @comentarios.Count(x => x.Resultado.Prediction)</span>
-        </div>
-        <div class="col">
-            <span class="badge bg-danger">Negativas: @comentarios.Count(x => !x.Resultado.Prediction)</span>
-        </div>
-    </div>
+    private bool firstRender = true;
+    private bool firstRenderCalled = false; // To ensure we call ActualizarGrafico after JS is ready
+
+     protected override void OnAfterRender(bool firstRender)
+    {
+        this.firstRender = firstRender;
+        if (firstRender)
+        {
+            firstRenderCalled = true;
+        }
+    }
 }

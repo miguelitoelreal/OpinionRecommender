@@ -1,0 +1,117 @@
+.sentiment-container {
+    padding: 1.5rem;
+}
+
+.sentiment-input-area {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.05);
+}
+
+.sentiment-input-area .form-label {
+    font-family: var(--font-family-headings);
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.sentiment-input-area textarea.form-control {
+    min-height: 100px;
+    background-color: var(--input-bg-color); /* Ensure it overrides general .form-control if needed */
+    color: var(--primary-text-color);
+    border-color: var(--input-border-color);
+    font-family: var(--font-family-base);
+    font-weight: 400;
+}
+
+.sentiment-input-area textarea.form-control:focus {
+    background-color: var(--input-bg-color);
+    color: var(--primary-text-color);
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 229, 255, 0.25);
+}
+
+.sentiment-input-area .btn-primary {
+    margin-top: 1rem;
+    width: 100%; /* Make button full width in this section */
+}
+
+
+/* Analyzed Comments List */
+.analyzed-comments-list .list-group-item {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    padding: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+.analyzed-comments-list .list-group-item:hover {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+}
+
+.analyzed-comments-list .comment-text {
+    color: var(--primary-text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.analyzed-comments-list .comment-details {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color);
+}
+
+.analyzed-comments-list .comment-details .badge {
+    font-size: 0.8rem;
+    padding: 0.4em 0.7em;
+    font-family: var(--font-family-headings);
+    letter-spacing: 0.5px;
+}
+/* Badge styles are already in app.css (bg-success, bg-danger) */
+
+
+/* Chart Area */
+.sentiment-chart-container {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    margin-top: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.05);
+}
+
+.sentiment-chart-container h5 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#sentimentChart { /* Canvas element for Chart.js */
+    max-height: 350px; /* Control chart height */
+}
+
+/* Summary Badges */
+.summary-badges-container {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around; /* Distribute badges */
+}
+
+.summary-badges-container .badge {
+    font-size: 1rem;
+    padding: 0.6em 1em;
+    font-family: var(--font-family-headings);
+}
+
+.error-message-sentiment { /* Uses .alert-danger from app.css */
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: var(--font-family-base);
+    font-weight: 600;
+}
